@@ -1,14 +1,16 @@
-import TokenPage from "@/components/Token";
 import { Metadata } from "next";
+import TreamentTypesPage from "@/components/treatment-types";
+
 
 export const metadata: Metadata = {
-  title: "Token Page",
+  title: "Treatment-Types Page",
+  // other metadata
 };
 
 const CalendarPage = () => {
   return (
     <>
-      <TokenPage />
+      <TreamentTypesPage />
     </>
   );
 };
