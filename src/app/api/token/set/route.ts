@@ -10,11 +10,6 @@ export async function POST(req: NextRequest) {
         
         axios.post(`${process.env.SERVER_URL}/token/set`, {
             token : token,
-            test : 'test 123123123'
-        }, {
-            headers: {
-                'Content-Type': 'application/json'
-            }
         }).then(res => {
             console.log(res);
         })
