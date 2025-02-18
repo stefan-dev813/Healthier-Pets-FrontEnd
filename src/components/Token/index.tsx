@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect, useState } from "react"
 import { ShowcaseSection } from "../Layouts/showcase-section"
 import InputGroup from "../FormElements/InputGroup"
+import { TextAreaGroup } from '../FormElements/InputGroup/text-area';
 import { Button } from "../ui-elements/button"
 import { MessageOutlineIcon } from "@/assets/icons"
 
@@ -40,10 +41,11 @@ const TokenPage = () => {
     }
 
     const editToken = (str: string) => {
-        setTokenValue(str);
-        if(!stateToken.isEdit){
-            dispatch(setTokenEditable())
-        }
+        alert("EDITABLE!");
+        // setTokenValue(str);
+        // if(!stateToken.isEdit){
+        //     dispatch(setTokenEditable())
+        // }
         
     }
 
@@ -55,12 +57,18 @@ const TokenPage = () => {
     return (
         <>
             <ShowcaseSection title="TOKEN INPUT PAGE" className="space-y-5.5 !p-6.5">
-                <InputGroup
+                {/* <InputGroup
                     label="Token Input"
                     placeholder="Token"
                     type="text"
                     value={TOKEN_TOKEN}
                     handleChange={ e => editToken(e.target.value)}
+                /> */}
+                <TextAreaGroup
+                    label="Token Input"
+                    placeholder="Token Input"
+                    defaultValue={TOKEN_TOKEN}
+                    onChange={ e => editToken(e.target.value)}
                 />
                 {
                     !stateToken.isEdit ? 
