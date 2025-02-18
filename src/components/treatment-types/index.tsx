@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import axios from "axios";
 import {
     Table,
@@ -20,13 +20,13 @@ import { compactFormat, standardFormat } from "@/lib/format-number";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { setTokenEditable, setTokenState } from '@/app/redux/token';
 import { setTreatmentTypes } from "@/app/redux/treatment-types";
+import { TopProductsSkeleton } from "@/components/Tables/top-products/skeleton";
 
 interface Treatment {
     id: number,
     name : string,
     translation: string,
     translation_slug: string
-
 }
 
 const getTreatmentTypes = async (token : string, dispatch: any, setLoading: any) => {
@@ -63,7 +63,7 @@ function convertArrayToCSV(data: Array<Treatment>) {
     return csvRows.join('\n');
 }
 
-function downloadCSV(csvString, filename = 'data.csv') {
+function downloadCSV(csvString: any, filename = 'data.csv') {
     const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
@@ -76,8 +76,6 @@ function downloadCSV(csvString, filename = 'data.csv') {
     URL.revokeObjectURL(url);
 }
 
-
-
 const downloadTreatmentTypes = async (data: Array<Treatment>) => {
     try {
         const csvData = convertArrayToCSV(data);
@@ -86,8 +84,6 @@ const downloadTreatmentTypes = async (data: Array<Treatment>) => {
         console.error('Failed to download CSV:', error);
     }
 };
-
-
 
 const TreamentTypesPage = ({ className } : {className?: string}) => {
     const dispatch = useAppDispatch();
@@ -121,7 +117,7 @@ const TreamentTypesPage = ({ className } : {className?: string}) => {
                     onClick={() =>downloadTreatmentTypes(stateTreatmentTypes)}
                 />
             </ShowcaseSection>
-        
+            
             <Table>
                 <TableHeader>
                     <TableRow className="border-none uppercase [&>th]:text-center">
@@ -152,12 +148,11 @@ const TreamentTypesPage = ({ className } : {className?: string}) => {
                 }
                 </TableBody>
             </Table>
-
-          {
-            loading ? <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'50px', marginBottom:'50px'}}><HashLoader/></div> : <></>
-          }
+            {
+                loading ? <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'50px', marginBottom:'50px'}}><HashLoader color="#008000"/></div> : <></>
+            }
         </div>
-      );
+    );
 }
 
 export default TreamentTypesPage;

@@ -7,7 +7,7 @@ export const NAV_DATA = [
       {
         title: "Token",
         icon: Icons.User,
-        url: "/token",
+        url: "/",
         items: [],
       },
       {
@@ -16,6 +16,27 @@ export const NAV_DATA = [
         url: "/treatment-types",
         items: [],
       },
+      {
+        title: "Pet Parents",
+        icon: Icons.Table,
+        url: "/pet-parents",
+        items: [],
+      },
+      {
+        title: "Pets",
+        icon: Icons.Table,
+        url: "/pets",
+        items: [
+          {
+            title: "Clinic - 496",
+            url: "/pets/496",
+          },
+          {
+            title: 'Clinic - 497',
+            url: "/pets/497"
+          }
+        ]
+      }
     ],
   },
 ];
