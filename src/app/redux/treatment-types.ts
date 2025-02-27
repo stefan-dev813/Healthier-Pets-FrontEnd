@@ -45,7 +45,7 @@ export const treatment_types = createSlice({
             state.start = action.payload.start;
             state.end = action.payload.end;
             state.value = setTypesValue(action.payload.data, state.start, state.end);
-            console.log(state.value);
+            // console.log(state.value);
         },
     }
 })
