@@ -7,7 +7,7 @@ export const NAV_DATA = [
       {
         title: "Token",
         icon: Icons.User,
-        url: "/",
+        url: "/token",
         items: [],
       },
       {
