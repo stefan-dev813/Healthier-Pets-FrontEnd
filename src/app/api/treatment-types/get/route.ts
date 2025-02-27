@@ -30,9 +30,9 @@ export async function POST(req: NextRequest){
             }))
         };
 
-        const netTypes = simplifyTypes(treatmentTypes);
+        const simplifiedTypes = simplifyTypes(treatmentTypes);
 
-        return NextResponse.json({ message: "Treatment-Types Get successfully", treatment_types: netTypes });
+        return NextResponse.json({ message: "Treatment-Types Get successfully", treatment_types: simplifiedTypes });
     } catch (err) {
 
     }   

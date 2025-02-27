@@ -20,7 +20,8 @@ import { cn } from "@/lib/utils";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 import { setTokenEditable, setTokenState } from '@/app/redux/token';
 
-import { setStatePetParents } from "@/app/redux/pet-parents";
+import petParents, { setStatePetParents } from "@/app/redux/pet-parents";
+import ReactPaginate from 'react-paginate';
 
 const clinic_id: number = 496;
 
@@ -39,8 +40,8 @@ const apiPetParents = async (token: string, clinic_id: number, dispatch: any, se
         const parents = await axios.post(`/api/pet-parents/${clinic_id}`, {
             token: token,
             clinic_id: clinic_id
-        })
-        console.log(parents.data.petParents);
+        });
+
         if(parents.data && parents.data.petParents){
             dispatch(setStatePetParents(parents.data.petParents));
             setLoading(false);
@@ -112,7 +113,7 @@ const ComponentPetParents = ({ className } : {className?: string}) => {
             )}
         >
             <h2 className="mb-4 text-body-2xlg font-bold text-dark dark:text-white">
-                Treatment-Types ({statePetParents.length})
+                Pet-Parents ({statePetParents.length})
             </h2>
 
             <ShowcaseSection title="" className="space-y-5.5 !p-6.5">
@@ -170,6 +171,7 @@ const ComponentPetParents = ({ className } : {className?: string}) => {
             {
                 loading ? <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'50px', marginBottom:'50px'}}><HashLoader color="#008000"/></div> : <></>
             }
+            
         </div>
     );
 }
